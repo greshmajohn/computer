@@ -1,0 +1,57 @@
+
+
+Softwares and Tools with versions
+--------------------------------------------
+
+ 1.Java 17 , Programming language used.
+ 2.Spring Boot : 3.2.1, Framework to build web application
+ 3.lombok :1.18.30 , provide getter setter and constructors by default
+ 4.postgresql : 42.6 , database used.
+ 5.maven : 3.9.4 , to build the application.
+ 6.junit :5 , framework for unit testing.
+ 
+ 
+ API Details
+ -----------------------------------------------------------------------
+ 
+ 1. GET : api/v1/device/computer
+ 	Fetch all computer details from database. If the optional input field computer name is given,
+ 	single computer object is send in the response if computer name exists.
+ 
+ 2. POST: api/v1/device/computer
+ 
+	Save computer details and allocate computer to employee while adding the computer details.
+	It is not mandatory to allocate the computer to an employee upon allocation. If the emp no
+	is given during the save process, the emp id will be validated and the no of device of the employee 
+	is updated in the DB. If the employee is allocated with 3 or more devices, notification message 
+	will be send in the response along with other details using the external API.
+	
+ 3. GET:  api/v1/device/computer-of-employee
+ 	
+ 	Fetch the computer details of an employee. Employee No is the input and if
+ 	employee is assigned with one or more devices, the list pf computers will be sent.
+ 	Otherwise DataNotFoundException will be thrown.
+ 	
+ 4. POST: api/v1/device/deallocate-computer
+ 
+ 	de-allocate computer assigned to an employee. Reduce the no-of_device count of employee 
+ 	once the de-allocation complete successfully.
+ 	
+ 5. POST: api/v1/device/update-computer-employee
+ 	
+ 	Allocate already added computer to an employee. Computer should not be owned by any other employees.
+ 	If the allocation happens successfully , no_of_device of the allocated employee will increase by 1.
+ 	Given emp no should be valid and available in database.
+ 
+ 
+
+ 
+ 
+ Additional APIs added which was not part of requirement
+------------------------------------------------------------------------------
+
+ 1.GET :  api/v1/employee/employee
+	
+	Get the list of all employees saved in DB.
+ 2.POST : api/v1/employee/employee
+ 	Save employee details to database. Generate abbrevation and emp no dynamically.
